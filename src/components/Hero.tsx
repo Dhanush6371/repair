@@ -61,10 +61,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Expert <span className="text-yellow-400">Tech Repair</span> Services
+            Services de <span className="text-yellow-400">Réparation Tech</span> Experts
           </h2>
           <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-            Professional mobile and laptop repair with same-day solutions
+            Réparation professionnelle de mobiles et ordinateurs portables avec solutions le jour même
           </p>
         </div>
 
@@ -75,7 +75,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
             <div className="relative h-40 overflow-hidden">
               <img 
                 src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Mobile phone repair" 
+                alt="Réparation de téléphone mobile" 
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -86,24 +86,24 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
             </div>
             
             <div className="p-6">
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Mobile Repair Shop</h3>
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Atelier de Réparation Mobile</h3>
               <p className="text-gray-600 text-sm mb-4">
-                Screen replacement, battery issues, water damage recovery
+                Remplacement d'écran, problèmes de batterie, récupération après dégâts des eaux
               </p>
               
               <div className="space-y-2 mb-4">
                 <div className="flex items-center text-xs text-gray-700">
                   <MapPin className="h-3 w-3 text-yellow-500 mr-2" />
-                  <span>123 Tech Street, Downtown Plaza</span>
+                  <span>123 Rue Tech, Plaza Centre-ville</span>
                 </div>
                 <div className="flex items-center text-xs text-gray-700">
                   <Clock className="h-3 w-3 text-yellow-500 mr-2" />
-                  <span>Same-day repairs available</span>
+                  <span>Réparations le jour même disponibles</span>
                 </div>
               </div>
 
               <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
-                Book Mobile Repair
+                Réserver Réparation Mobile
               </button>
             </div>
           </div>
@@ -114,7 +114,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
             <div className="relative h-40 overflow-hidden">
               <img 
                 src="https://images.pexels.com/photos/5582596/pexels-photo-5582596.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Laptop repair service" 
+                alt="Service de réparation d'ordinateur portable" 
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -125,24 +125,24 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
             </div>
             
             <div className="p-6">
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Laptop Repair Center</h3>
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Centre de Réparation Ordinateur Portable</h3>
               <p className="text-gray-600 text-sm mb-4">
-                Hardware upgrades, virus removal, data recovery
+                Mises à niveau matérielles, suppression de virus, récupération de données
               </p>
               
               <div className="space-y-2 mb-4">
                 <div className="flex items-center text-xs text-gray-700">
                   <MapPin className="h-3 w-3 text-yellow-500 mr-2" />
-                  <span>456 Computer Ave, Tech District</span>
+                  <span>456 Avenue Informatique, Quartier Tech</span>
                 </div>
                 <div className="flex items-center text-xs text-gray-700">
                   <Clock className="h-3 w-3 text-yellow-500 mr-2" />
-                  <span>24-48 hour turnaround</span>
+                  <span>Délai de traitement 24-48 heures</span>
                 </div>
               </div>
 
               <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
-                Book Laptop Repair
+                Réserver Réparation Ordinateur Portable
               </button>
             </div>
           </div>

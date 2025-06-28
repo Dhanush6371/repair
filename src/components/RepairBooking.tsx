@@ -45,13 +45,13 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
   const devices: Device[] = [
     {
       id: 'mobile',
-      name: 'Mobile Phone',
+      name: 'Téléphone Mobile',
       icon: <Smartphone className="h-12 w-12" />,
       type: 'mobile'
     },
     {
       id: 'laptop',
-      name: 'Laptop',
+      name: 'Ordinateur Portable',
       icon: <Laptop className="h-12 w-12" />,
       type: 'laptop'
     }
@@ -204,95 +204,95 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
     // Mobile services
     {
       id: 'mobile-screen',
-      name: 'Compatible LCD screen',
-      description: '1-hour workshop repair. 3-month warranty.',
+      name: 'Écran LCD compatible',
+      description: 'Réparation en atelier 1 heure. Garantie 3 mois.',
       price: 299.00,
-      duration: '1 hour',
-      warranty: '3 months',
+      duration: '1 heure',
+      warranty: '3 mois',
       eligible: true,
       deviceType: 'mobile'
     },
     {
       id: 'sim-drawer',
-      name: 'SIM drawer',
-      description: 'Quick replacement service.',
+      name: 'Tiroir SIM',
+      description: 'Service de remplacement rapide.',
       price: 10.00,
       duration: '15 minutes',
-      warranty: '1 month',
+      warranty: '1 mois',
       deviceType: 'mobile'
     },
     {
       id: 'mobile-battery',
-      name: 'Battery replacement',
-      description: 'Original battery with 6-month warranty.',
+      name: 'Remplacement de batterie',
+      description: 'Batterie d\'origine avec garantie 6 mois.',
       price: 89.00,
       duration: '30 minutes',
-      warranty: '6 months',
+      warranty: '6 mois',
       deviceType: 'mobile'
     },
     {
       id: 'charging-port',
-      name: 'Charging port repair',
-      description: 'Complete charging port replacement.',
+      name: 'Réparation port de charge',
+      description: 'Remplacement complet du port de charge.',
       price: 79.00,
       duration: '45 minutes',
-      warranty: '3 months',
+      warranty: '3 mois',
       deviceType: 'mobile'
     },
     // Laptop services
     {
       id: 'laptop-screen',
-      name: 'LCD Screen Replacement',
-      description: 'Professional screen replacement with warranty.',
+      name: 'Remplacement Écran LCD',
+      description: 'Remplacement d\'écran professionnel avec garantie.',
       price: 450.00,
-      duration: '2-3 hours',
-      warranty: '6 months',
+      duration: '2-3 heures',
+      warranty: '6 mois',
       eligible: true,
       deviceType: 'laptop'
     },
     {
       id: 'laptop-battery',
-      name: 'Laptop Battery Replacement',
-      description: 'High-quality battery replacement.',
+      name: 'Remplacement Batterie Ordinateur Portable',
+      description: 'Remplacement de batterie haute qualité.',
       price: 120.00,
-      duration: '1 hour',
-      warranty: '12 months',
+      duration: '1 heure',
+      warranty: '12 mois',
       deviceType: 'laptop'
     },
     {
       id: 'keyboard-repair',
-      name: 'Keyboard Repair/Replacement',
-      description: 'Individual key or full keyboard replacement.',
+      name: 'Réparation/Remplacement Clavier',
+      description: 'Remplacement de touche individuelle ou clavier complet.',
       price: 180.00,
-      duration: '1-2 hours',
-      warranty: '6 months',
+      duration: '1-2 heures',
+      warranty: '6 mois',
       deviceType: 'laptop'
     },
     {
       id: 'motherboard-repair',
-      name: 'Motherboard Repair',
-      description: 'Complex motherboard diagnostics and repair.',
+      name: 'Réparation Carte Mère',
+      description: 'Diagnostic et réparation complexe de carte mère.',
       price: 350.00,
-      duration: '3-5 days',
-      warranty: '3 months',
+      duration: '3-5 jours',
+      warranty: '3 mois',
       deviceType: 'laptop'
     },
     {
       id: 'hard-drive-replacement',
-      name: 'Hard Drive/SSD Upgrade',
-      description: 'Storage upgrade with data migration.',
+      name: 'Mise à niveau Disque Dur/SSD',
+      description: 'Mise à niveau de stockage avec migration de données.',
       price: 200.00,
-      duration: '2-4 hours',
-      warranty: '12 months',
+      duration: '2-4 heures',
+      warranty: '12 mois',
       deviceType: 'laptop'
     },
     // Common services
     {
       id: 'data-recovery',
-      name: 'Data recovery',
-      description: 'Professional data recovery service.',
+      name: 'Récupération de données',
+      description: 'Service professionnel de récupération de données.',
       price: 150.00,
-      duration: '2-3 days',
+      duration: '2-3 jours',
       warranty: 'N/A',
       deviceType: 'both'
     }
@@ -400,19 +400,19 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
     <div className="flex justify-center mb-6 md:mb-8 overflow-x-auto">
       <div className="grid grid-cols-5 gap-2 md:gap-8 text-center text-xs md:text-sm px-2">
         <div className={`min-w-[60px] ${currentStep === 1 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
-          Device
+          Appareil
         </div>
         <div className={`min-w-[60px] ${currentStep === 2 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
-          Brand
+          Marque
         </div>
         <div className={`min-w-[60px] ${currentStep === 3 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
-          Model
+          Modèle
         </div>
         <div className={`min-w-[60px] ${currentStep === 4 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
           Services
         </div>
         <div className={`min-w-[60px] ${currentStep === 5 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
-          Appointment
+          Rendez-vous
         </div>
       </div>
     </div>
@@ -458,7 +458,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
               className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
             >
               <ChevronLeft className="h-5 w-5" />
-              <span>Back to Home</span>
+              <span>Retour à l'Accueil</span>
             </button>
           </motion.div>
         )}
@@ -476,7 +476,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 {selectedDevice.icon}
               </div>
               <h1 className="text-xl md:text-2xl font-bold text-white">
-                {selectedDevice.name} Repair Booking
+                Réservation Réparation {selectedDevice.name}
               </h1>
             </div>
           </motion.div>
@@ -502,7 +502,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 transition={{ delay: 0.2 }}
                 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8"
               >
-                What type of device needs repair?
+                Quel type d'appareil a besoin d'une réparation ?
               </motion.h2>
               <motion.div 
                 variants={containerVariants}
@@ -548,7 +548,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 transition={{ delay: 0.2 }}
                 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8"
               >
-                What is your brand?
+                Quelle est votre marque ?
               </motion.h2>
               <motion.div 
                 initial={{ opacity: 0 }}
@@ -560,7 +560,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 md:h-5 md:w-5" />
                   <input
                     type="text"
-                    placeholder="Search for a brand"
+                    placeholder="Rechercher une marque"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 md:py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-sm md:text-base"
@@ -601,7 +601,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   className="flex items-center space-x-2 text-gray-400 hover:text-white mx-auto transition-colors"
                 >
                   <ChevronLeft className="h-5 w-5" />
-                  <span>Back</span>
+                  <span>Retour</span>
                 </button>
               </motion.div>
             </motion.div>
@@ -623,7 +623,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 transition={{ delay: 0.2 }}
                 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8"
               >
-                What is your model?
+                Quel est votre modèle ?
               </motion.h2>
               <motion.div 
                 initial={{ opacity: 0 }}
@@ -635,7 +635,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 md:h-5 md:w-5" />
                   <input
                     type="text"
-                    placeholder="Search for a model"
+                    placeholder="Rechercher un modèle"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 md:py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-sm md:text-base"
@@ -676,7 +676,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   className="flex items-center space-x-2 text-gray-400 hover:text-white mx-auto transition-colors"
                 >
                   <ChevronLeft className="h-5 w-5" />
-                  <span>Back</span>
+                  <span>Retour</span>
                 </button>
               </motion.div>
             </motion.div>
@@ -698,10 +698,10 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 className="text-center mb-6 md:mb-8"
               >
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-4">
-                  Select the repairs to be carried out
+                  Sélectionnez les réparations à effectuer
                 </h2>
                 <p className="text-gray-400 text-sm md:text-base">
-                  All our prices are up to date as of {new Date().toLocaleDateString()} and are quoted inclusive of VAT, parts and labor.
+                  Tous nos prix sont à jour au {new Date().toLocaleDateString('fr-FR')} et sont indiqués TTC, pièces et main-d'œuvre comprises.
                 </p>
               </motion.div>
 
@@ -718,9 +718,9 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 >
                   <div className="text-xl md:text-2xl font-bold">25€</div>
                   <div className="text-xs md:text-sm">
-                    <strong>IMMEDIATE DISCOUNT!</strong><br />
-                    THANKS TO THE QUALIREPAR BONUS*<br />
-                    <em>no action required on your part</em>
+                    <strong>REMISE IMMÉDIATE !</strong><br />
+                    GRÂCE AU BONUS QUALIREPAR*<br />
+                    <em>aucune action requise de votre part</em>
                   </div>
                 </motion.div>
                 <motion.div 
@@ -729,8 +729,8 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 >
                   <div className="text-xl md:text-2xl font-bold">20€</div>
                   <div className="text-xs md:text-sm">
-                    <strong>DISCOUNT ON YOUR SECOND REPAIR</strong><br />
-                    <em>offer can be combined with the qualified bonus</em>
+                    <strong>REMISE SUR VOTRE DEUXIÈME RÉPARATION</strong><br />
+                    <em>offre cumulable avec le bonus qualifié</em>
                   </div>
                 </motion.div>
               </motion.div>
@@ -741,7 +741,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 className="bg-cyan-500 text-white p-3 md:p-4 rounded-lg mb-6 md:mb-8 text-center"
               >
                 <h3 className="text-lg md:text-xl font-bold">
-                  {selectedBrand?.name} {selectedModel?.name} Repairs
+                  Réparations {selectedBrand?.name} {selectedModel?.name}
                 </h3>
               </motion.div>
 
@@ -776,7 +776,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                         <p className="text-gray-400 text-xs md:text-sm">{service.description}</p>
                         {service.eligible && (
                           <span className="inline-block bg-green-600 text-white text-xs px-2 py-1 rounded mt-1">
-                            Eligible repair bonus*
+                            Réparation éligible bonus*
                           </span>
                         )}
                       </div>
@@ -799,10 +799,10 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
                 >
                   <ChevronLeft className="h-5 w-5" />
-                  <span>Back</span>
+                  <span>Retour</span>
                 </button>
                 <div className="text-white text-center sm:text-right">
-                  <span className="text-base md:text-lg">Quote amount: </span>
+                  <span className="text-base md:text-lg">Montant du devis : </span>
                   <span className="text-xl md:text-2xl font-bold text-yellow-400">
                     {totalPrice.toFixed(2)} €
                   </span>
@@ -814,7 +814,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                     selectedServices.length === 0 ? 'cursor-not-allowed' : ''
                   }`}
                 >
-                  Make an appointment
+                  Prendre rendez-vous
                 </button>
               </motion.div>
             </motion.div>
@@ -836,10 +836,10 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 className="text-center mb-6 md:mb-8"
               >
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-4">
-                  Book Your Appointment
+                  Réservez Votre Rendez-vous
                 </h2>
                 <p className="text-gray-400 text-sm md:text-base">
-                  Complete your booking by filling in your details
+                  Complétez votre réservation en remplissant vos informations
                 </p>
               </motion.div>
 
@@ -854,12 +854,12 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   variants={itemVariants}
                   className="bg-gray-800 p-4 md:p-6 rounded-lg order-2 lg:order-1"
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">Summary</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">Résumé</h3>
                   <div className="space-y-2 text-gray-300 text-sm md:text-base">
-                    <p><strong>Device:</strong> {selectedDevice?.name}</p>
-                    <p><strong>Model:</strong> {selectedBrand?.name} {selectedModel?.name}</p>
+                    <p><strong>Appareil :</strong> {selectedDevice?.name}</p>
+                    <p><strong>Modèle :</strong> {selectedBrand?.name} {selectedModel?.name}</p>
                     <div>
-                      <strong>Services:</strong>
+                      <strong>Services :</strong>
                       <ul className="ml-4 mt-1 md:mt-2 space-y-1">
                         {selectedServices.map(serviceId => {
                           const service = availableServices.find(s => s.id === serviceId);
@@ -874,7 +874,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                     </div>
                     <div className="border-t border-gray-700 pt-2 mt-3 md:mt-4">
                       <p className="text-cyan-400 font-bold text-base md:text-lg">
-                        TOTAL (incl. VAT): {totalPrice.toFixed(2)} €
+                        TOTAL (TTC) : {totalPrice.toFixed(2)} €
                       </p>
                     </div>
                   </div>
@@ -885,7 +885,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   variants={itemVariants}
                   className="bg-gray-800 p-4 md:p-6 rounded-lg order-1 lg:order-2"
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">Appointment</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">Rendez-vous</h3>
                   <form className="space-y-3 md:space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                       <div>
@@ -904,7 +904,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                       </div>
                       <div>
                         <label className="block text-white text-xs md:text-sm font-medium mb-1">
-                          Available time slot <span className="text-red-500">*</span>
+                          Créneau horaire disponible <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -913,7 +913,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                             onChange={(e) => setAppointmentData({...appointmentData, time: e.target.value})}
                             className="w-full pl-10 pr-3 py-2 text-sm bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent appearance-none"
                           >
-                            <option value="">Choose a time</option>
+                            <option value="">Choisir un horaire</option>
                             {timeSlots.map(time => (
                               <option key={time} value={time}>{time}</option>
                             ))}
@@ -925,7 +925,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                       <div>
                         <label className="block text-white text-xs md:text-sm font-medium mb-1">
-                          Name <span className="text-red-500">*</span>
+                          Nom <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -939,7 +939,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                       </div>
                       <div>
                         <label className="block text-white text-xs md:text-sm font-medium mb-1">
-                          First name <span className="text-red-500">*</span>
+                          Prénom <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
                           <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -970,7 +970,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                       </div>
                       <div>
                         <label className="block text-white text-xs md:text-sm font-medium mb-1">
-                          Phone
+                          Téléphone
                         </label>
                         <div className="relative">
                           <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -991,13 +991,13 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                         className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
                       >
                         <ChevronLeft className="h-5 w-5" />
-                        <span>Back</span>
+                        <span>Retour</span>
                       </button>
                       <button
                         type="submit"
                         className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 md:px-8 md:py-3 rounded-lg font-semibold transition-colors w-full sm:w-auto"
                       >
-                        Confirm Appointment
+                        Confirmer le Rendez-vous
                       </button>
                     </div>
                   </form>

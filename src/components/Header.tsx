@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ onBackToHome }) => {
               <button
                 onClick={onBackToHome}
                 className="mr-2 p-2 hover:bg-gray-800 rounded-lg transition-colors"
-                aria-label="Back to home"
+                aria-label="Retour à l'accueil"
               >
                 <ArrowLeft className="h-5 w-5" />
               </button>
@@ -50,22 +50,22 @@ const Header: React.FC<HeaderProps> = ({ onBackToHome }) => {
           </div>
           
           <nav className="hidden md:flex space-x-8 items-center">
-            <a href="#home" className="hover:text-yellow-400 transition-colors">Home</a>
+            <a href="#home" className="hover:text-yellow-400 transition-colors">Accueil</a>
             <a href="#services" className="hover:text-yellow-400 transition-colors">Services</a>
-            <a href="#about" className="hover:text-yellow-400 transition-colors">About</a>
+            <a href="#about" className="hover:text-yellow-400 transition-colors">À propos</a>
             <a href="#contact" className="hover:text-yellow-400 transition-colors">Contact</a>
             <button 
               onClick={handleBookRepair}
               className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg font-semibold transition-colors"
             >
-              Book Repair
+              Réserver une Réparation
             </button>
           </nav>
 
           <button
             className="md:hidden"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            aria-label="Basculer le menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -75,15 +75,15 @@ const Header: React.FC<HeaderProps> = ({ onBackToHome }) => {
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4">
             <div className="flex flex-col space-y-4">
-              <a href="#home" className="hover:text-yellow-400 transition-colors" onClick={toggleMenu}>Home</a>
+              <a href="#home" className="hover:text-yellow-400 transition-colors" onClick={toggleMenu}>Accueil</a>
               <a href="#services" className="hover:text-yellow-400 transition-colors" onClick={toggleMenu}>Services</a>
-              <a href="#about" className="hover:text-yellow-400 transition-colors" onClick={toggleMenu}>About</a>
+              <a href="#about" className="hover:text-yellow-400 transition-colors" onClick={toggleMenu}>À propos</a>
               <a href="#contact" className="hover:text-yellow-400 transition-colors" onClick={toggleMenu}>Contact</a>
               <button 
                 onClick={handleBookRepair}
                 className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg font-semibold transition-colors text-left"
               >
-                Book Repair
+                Réserver une Réparation
               </button>
             </div>
           </nav>

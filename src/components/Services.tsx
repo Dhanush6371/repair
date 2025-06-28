@@ -19,62 +19,62 @@ const Services = () => {
   const webServices = [
     {
       icon: <Globe className="h-8 w-8" />,
-      title: "Website Development",
-      description: "Custom websites and e-commerce solutions for your business"
+      title: "Développement de Sites Web",
+      description: "Sites web personnalisés et solutions e-commerce pour votre entreprise"
     },
     {
       icon: <Code className="h-8 w-8" />,
-      title: "Web Applications",
-      description: "Dynamic web apps with modern frameworks and technologies"
+      title: "Applications Web",
+      description: "Applications web dynamiques avec des frameworks et technologies modernes"
     },
     {
       icon: <Smartphone className="h-8 w-8" />,
-      title: "Mobile Apps",
-      description: "Native and cross-platform mobile application development"
+      title: "Applications Mobiles",
+      description: "Développement d'applications mobiles natives et multiplateformes"
     },
     {
       icon: <Monitor className="h-8 w-8" />,
-      title: "Digital Solutions",
-      description: "Complete digital transformation and system integration"
+      title: "Solutions Numériques",
+      description: "Transformation numérique complète et intégration de systèmes"
     },
     {
       icon: <Shield className="h-8 w-8" />,
-      title: "Security Services",
-      description: "Cybersecurity audits and protection implementation"
+      title: "Services de Sécurité",
+      description: "Audits de cybersécurité et mise en œuvre de protection"
     },
     {
       icon: <Zap className="h-8 w-8" />,
-      title: "Performance Optimization",
-      description: "Speed optimization and performance enhancement services"
+      title: "Optimisation des Performances",
+      description: "Services d'optimisation de vitesse et d'amélioration des performances"
     }
   ];
 
   const projectTypes = [
-    'Website Development',
-    'E-commerce Platform',
-    'Mobile Application',
-    'Web Application',
-    'Digital Marketing',
-    'System Integration',
-    'Cybersecurity',
-    'Other'
+    'Développement de Site Web',
+    'Plateforme E-commerce',
+    'Application Mobile',
+    'Application Web',
+    'Marketing Numérique',
+    'Intégration de Système',
+    'Cybersécurité',
+    'Autre'
   ];
 
   const budgetRanges = [
-    'Under $5,000',
-    '$5,000 - $15,000',
-    '$15,000 - $50,000',
-    '$50,000 - $100,000',
-    'Over $100,000',
-    'To be discussed'
+    'Moins de 5 000€',
+    '5 000€ - 15 000€',
+    '15 000€ - 50 000€',
+    '50 000€ - 100 000€',
+    'Plus de 100 000€',
+    'À discuter'
   ];
 
   const timelineOptions = [
-    'ASAP',
-    '1-2 weeks',
-    '1-2 months',
-    '3-6 months',
-    '6+ months',
+    'Dès que possible',
+    '1-2 semaines',
+    '1-2 mois',
+    '3-6 mois',
+    '6+ mois',
     'Flexible'
   ];
 
@@ -108,7 +108,7 @@ const Services = () => {
     setShowForm(false);
     
     // You could show a success toast here
-    alert('Thank you! Your project inquiry has been submitted. We\'ll get back to you within 24 hours.');
+    alert('Merci ! Votre demande de projet a été soumise. Nous vous recontacterons dans les 24 heures.');
   };
 
   return (
@@ -116,11 +116,11 @@ const Services = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Our <span className="text-yellow-400">Digital Services</span>
+            Nos <span className="text-yellow-400">Services Numériques</span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Beyond hardware repairs, we offer comprehensive digital solutions 
-            to help your business thrive in the digital world.
+            Au-delà des réparations matérielles, nous offrons des solutions numériques complètes 
+            pour aider votre entreprise à prospérer dans le monde numérique.
           </p>
         </div>
 
@@ -147,11 +147,11 @@ const Services = () => {
         <div className="bg-gray-900 rounded-2xl p-6 md:p-8 lg:p-12 border border-gray-700">
           <div className="text-center mb-8">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Ready to Start Your <span className="text-yellow-400">Project</span>?
+              Prêt à Commencer Votre <span className="text-yellow-400">Projet</span> ?
             </h3>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
-              Let's discuss your digital project and create something amazing together. 
-              Fill out the form below and we'll get back to you within 24 hours.
+              Discutons de votre projet numérique et créons quelque chose d'extraordinaire ensemble. 
+              Remplissez le formulaire ci-dessous et nous vous recontacterons dans les 24 heures.
             </p>
             
             {!showForm ? (
@@ -160,14 +160,14 @@ const Services = () => {
                 className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105 inline-flex items-center space-x-2"
               >
                 <MessageSquare className="h-5 w-5" />
-                <span>Discuss Your Project</span>
+                <span>Discuter de Votre Projet</span>
               </button>
             ) : (
               <button 
                 onClick={() => setShowForm(false)}
                 className="text-gray-400 hover:text-white transition-colors inline-flex items-center space-x-2"
               >
-                <span>Hide Form</span>
+                <span>Masquer le Formulaire</span>
               </button>
             )}
           </div>
@@ -180,7 +180,7 @@ const Services = () => {
                 <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Full Name <span className="text-red-500">*</span>
+                      Nom Complet <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -191,14 +191,14 @@ const Services = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-colors"
-                        placeholder="Enter your full name"
+                        placeholder="Entrez votre nom complet"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Email Address <span className="text-red-500">*</span>
+                      Adresse Email <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -209,7 +209,7 @@ const Services = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-colors"
-                        placeholder="your.email@example.com"
+                        placeholder="votre.email@exemple.com"
                       />
                     </div>
                   </div>
@@ -218,7 +218,7 @@ const Services = () => {
                 <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Phone Number
+                      Numéro de Téléphone
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -228,14 +228,14 @@ const Services = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-colors"
-                        placeholder="+1 (555) 123-4567"
+                        placeholder="+33 1 23 45 67 89"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Company/Organization
+                      Entreprise/Organisation
                     </label>
                     <div className="relative">
                       <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -245,7 +245,7 @@ const Services = () => {
                         value={formData.company}
                         onChange={handleInputChange}
                         className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-colors"
-                        placeholder="Your company name"
+                        placeholder="Nom de votre entreprise"
                       />
                     </div>
                   </div>
@@ -255,7 +255,7 @@ const Services = () => {
                 <div className="grid md:grid-cols-3 gap-4 md:gap-6">
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Project Type <span className="text-red-500">*</span>
+                      Type de Projet <span className="text-red-500">*</span>
                     </label>
                     <select
                       name="projectType"
@@ -264,7 +264,7 @@ const Services = () => {
                       required
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-colors appearance-none"
                     >
-                      <option value="">Select project type</option>
+                      <option value="">Sélectionner le type de projet</option>
                       {projectTypes.map((type) => (
                         <option key={type} value={type}>{type}</option>
                       ))}
@@ -273,7 +273,7 @@ const Services = () => {
 
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Budget Range
+                      Fourchette de Budget
                     </label>
                     <select
                       name="budget"
@@ -281,7 +281,7 @@ const Services = () => {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-colors appearance-none"
                     >
-                      <option value="">Select budget range</option>
+                      <option value="">Sélectionner la fourchette de budget</option>
                       {budgetRanges.map((range) => (
                         <option key={range} value={range}>{range}</option>
                       ))}
@@ -290,7 +290,7 @@ const Services = () => {
 
                   <div>
                     <label className="block text-white text-sm font-medium mb-2">
-                      Timeline
+                      Délai
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -300,7 +300,7 @@ const Services = () => {
                         onChange={handleInputChange}
                         className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-colors appearance-none"
                       >
-                        <option value="">Select timeline</option>
+                        <option value="">Sélectionner le délai</option>
                         {timelineOptions.map((option) => (
                           <option key={option} value={option}>{option}</option>
                         ))}
@@ -312,7 +312,7 @@ const Services = () => {
                 {/* Project Description */}
                 <div>
                   <label className="block text-white text-sm font-medium mb-2">
-                    Project Description <span className="text-red-500">*</span>
+                    Description du Projet <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     name="message"
@@ -321,7 +321,7 @@ const Services = () => {
                     required
                     rows={6}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-colors resize-vertical"
-                    placeholder="Please describe your project in detail. Include your goals, requirements, features you need, target audience, and any specific technologies or platforms you prefer..."
+                    placeholder="Veuillez décrire votre projet en détail. Incluez vos objectifs, exigences, fonctionnalités nécessaires, public cible, et toute technologie ou plateforme spécifique que vous préférez..."
                   />
                 </div>
 
@@ -335,12 +335,12 @@ const Services = () => {
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
-                        <span>Submitting...</span>
+                        <span>Envoi en cours...</span>
                       </>
                     ) : (
                       <>
                         <Send className="h-5 w-5" />
-                        <span>Send Project Inquiry</span>
+                        <span>Envoyer la Demande de Projet</span>
                       </>
                     )}
                   </button>
@@ -348,12 +348,12 @@ const Services = () => {
 
                 {/* Additional Info */}
                 <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 mt-6">
-                  <h4 className="text-white font-semibold mb-2">What happens next?</h4>
+                  <h4 className="text-white font-semibold mb-2">Que se passe-t-il ensuite ?</h4>
                   <ul className="text-gray-300 text-sm space-y-1">
-                    <li>• We'll review your project requirements within 24 hours</li>
-                    <li>• Our team will prepare a detailed proposal and timeline</li>
-                    <li>• We'll schedule a consultation call to discuss your project</li>
-                    <li>• You'll receive a comprehensive quote with no hidden fees</li>
+                    <li>• Nous examinerons vos exigences de projet dans les 24 heures</li>
+                    <li>• Notre équipe préparera une proposition détaillée et un calendrier</li>
+                    <li>• Nous programmerons un appel de consultation pour discuter de votre projet</li>
+                    <li>• Vous recevrez un devis complet sans frais cachés</li>
                   </ul>
                 </div>
               </form>

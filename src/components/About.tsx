@@ -3,10 +3,10 @@ import { Users, Award, Clock, ThumbsUp } from 'lucide-react';
 
 const About = () => {
   const stats = [
-    { icon: <Users className="h-8 w-8" />, number: "5000+", label: "Happy Customers" },
-    { icon: <Award className="h-8 w-8" />, number: "10+", label: "Years Experience" },
-    { icon: <Clock className="h-8 w-8" />, number: "24/7", label: "Support Available" },
-    { icon: <ThumbsUp className="h-8 w-8" />, number: "98%", label: "Success Rate" }
+    { icon: <Users className="h-8 w-8" />, number: "5000+", label: "Clients Satisfaits" },
+    { icon: <Award className="h-8 w-8" />, number: "10+", label: "Années d'Expérience" },
+    { icon: <Clock className="h-8 w-8" />, number: "24/7", label: "Support Disponible" },
+    { icon: <ThumbsUp className="h-8 w-8" />, number: "98%", label: "Taux de Réussite" }
   ];
 
   return (
@@ -14,11 +14,11 @@ const About = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Why Choose <span className="text-yellow-400">TechFix Pro</span>?
+            Pourquoi Choisir <span className="text-yellow-400">TechFix Pro</span> ?
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Your trusted local technology experts with over 10 years of experience 
-            in mobile and laptop repairs.
+            Vos experts technologiques locaux de confiance avec plus de 10 ans d'expérience 
+            dans la réparation de mobiles et d'ordinateurs portables.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ const About = () => {
           <div className="relative order-2 lg:order-1">
             <img 
               src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Tech repair workspace" 
+              alt="Espace de travail de réparation tech" 
               className="rounded-2xl shadow-xl w-full"
               loading="lazy"
             />
@@ -51,27 +51,27 @@ const About = () => {
 
           <div className="order-1 lg:order-2">
             <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white">
-              Professional Repair Services You Can Trust
+              Services de Réparation Professionnels en qui Vous Pouvez Avoir Confiance
             </h3>
             <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed">
-              We are your trusted local technology experts, providing top-quality repair services 
-              for mobile devices and laptops since 2013. Our certified technicians combine 
-              years of experience with the latest tools and genuine parts.
+              Nous sommes vos experts technologiques locaux de confiance, fournissant des services de réparation 
+              de haute qualité pour les appareils mobiles et les ordinateurs portables depuis 2013. Nos techniciens 
+              certifiés combinent des années d'expérience avec les derniers outils et des pièces d'origine.
             </p>
             <p className="text-gray-300 mb-6 md:mb-8 leading-relaxed">
-              From simple screen replacements to complex motherboard repairs, we handle 
-              every job with precision and care. We also offer comprehensive web development 
-              services to help businesses establish their digital presence.
+              Des simples remplacements d'écran aux réparations complexes de cartes mères, nous traitons 
+              chaque travail avec précision et soin. Nous offrons également des services complets de développement 
+              web pour aider les entreprises à établir leur présence numérique.
             </p>
             <div className="flex flex-wrap gap-3">
               <div className="bg-yellow-400 text-gray-900 px-3 md:px-4 py-2 rounded-lg font-semibold text-xs md:text-sm">
-                Certified Technicians
+                Techniciens Certifiés
               </div>
               <div className="bg-yellow-400 text-gray-900 px-3 md:px-4 py-2 rounded-lg font-semibold text-xs md:text-sm">
-                Genuine Parts
+                Pièces d'Origine
               </div>
               <div className="bg-yellow-400 text-gray-900 px-3 md:px-4 py-2 rounded-lg font-semibold text-xs md:text-sm">
-                Warranty Included
+                Garantie Incluse
               </div>
             </div>
           </div>
