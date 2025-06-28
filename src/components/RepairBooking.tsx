@@ -57,8 +57,13 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
     }
   ];
 
-  // State initialization - start at step 1 if no deviceType, step 2 if deviceType provided
-  const [currentStep, setCurrentStep] = useState(deviceType ? 2 : 1);
+  // State initialization - for laptops, start at step 3, for mobiles step 2, otherwise step 1
+  const getInitialStep = () => {
+    if (!deviceType) return 1;
+    return deviceType === 'laptop' ? 3 : 2;
+  };
+
+  const [currentStep, setCurrentStep] = useState(getInitialStep());
   const [selectedDevice, setSelectedDevice] = useState<Device | null>(
     deviceType ? devices.find(d => d.type === deviceType) || null : null
   );
@@ -162,40 +167,103 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
       brandId: 'xiaomi',
       deviceType: 'mobile'
     },
-    // Laptop models
+    // Laptop models - All brands mixed together for step 3
     {
-      id: 'macbook-pro',
-      name: 'MacBook Pro 16"',
+      id: 'macbook-pro-16',
+      name: 'MacBook Pro 16" (2023)',
       image: '💻',
       brandId: 'apple',
       deviceType: 'laptop'
     },
     {
-      id: 'macbook-air',
-      name: 'MacBook Air 13"',
+      id: 'macbook-pro-14',
+      name: 'MacBook Pro 14" (2023)',
       image: '💻',
       brandId: 'apple',
       deviceType: 'laptop'
     },
     {
-      id: 'dell-xps',
-      name: 'Dell XPS 13',
+      id: 'macbook-air-15',
+      name: 'MacBook Air 15" (2023)',
+      image: '💻',
+      brandId: 'apple',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'macbook-air-13',
+      name: 'MacBook Air 13" (M2)',
+      image: '💻',
+      brandId: 'apple',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'dell-xps-13',
+      name: 'Dell XPS 13 Plus',
       image: '💻',
       brandId: 'dell',
       deviceType: 'laptop'
     },
     {
-      id: 'hp-pavilion',
-      name: 'HP Pavilion 15',
+      id: 'dell-xps-15',
+      name: 'Dell XPS 15 (9530)',
+      image: '💻',
+      brandId: 'dell',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'dell-inspiron',
+      name: 'Dell Inspiron 15 3000',
+      image: '💻',
+      brandId: 'dell',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'hp-pavilion-15',
+      name: 'HP Pavilion 15-eh2000',
       image: '💻',
       brandId: 'hp',
       deviceType: 'laptop'
     },
     {
-      id: 'lenovo-thinkpad',
-      name: 'ThinkPad X1 Carbon',
+      id: 'hp-envy-x360',
+      name: 'HP Envy x360 15',
+      image: '💻',
+      brandId: 'hp',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'hp-spectre',
+      name: 'HP Spectre x360 14',
+      image: '💻',
+      brandId: 'hp',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'lenovo-thinkpad-x1',
+      name: 'ThinkPad X1 Carbon Gen 11',
       image: '💻',
       brandId: 'lenovo',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'lenovo-thinkpad-t14',
+      name: 'ThinkPad T14 Gen 4',
+      image: '💻',
+      brandId: 'lenovo',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'lenovo-ideapad',
+      name: 'IdeaPad 5 Pro 16',
+      image: '💻',
+      brandId: 'lenovo',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'samsung-galaxy-book',
+      name: 'Galaxy Book3 Pro 360',
+      image: '💻',
+      brandId: 'samsung',
       deviceType: 'laptop'
     }
   ];
@@ -286,6 +354,24 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
       warranty: '12 mois',
       deviceType: 'laptop'
     },
+    {
+      id: 'fan-cleaning',
+      name: 'Nettoyage Ventilateur/Refroidissement',
+      description: 'Nettoyage complet du système de refroidissement.',
+      price: 80.00,
+      duration: '1 heure',
+      warranty: '3 mois',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'port-repair',
+      name: 'Réparation Ports USB/HDMI',
+      description: 'Réparation ou remplacement des ports endommagés.',
+      price: 150.00,
+      duration: '2 heures',
+      warranty: '6 mois',
+      deviceType: 'laptop'
+    },
     // Common services
     {
       id: 'data-recovery',
@@ -309,13 +395,17 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
     brand.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const filteredModels = models.filter(model => 
-    selectedBrand ? model.brandId === selectedBrand.id : true
-  ).filter(model =>
-    selectedDevice ? model.deviceType === selectedDevice.type : true
-  ).filter(model =>
-    model.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // For laptops in step 3, show all laptop models regardless of brand
+  const filteredModels = selectedDevice?.type === 'laptop' && currentStep === 3
+    ? models.filter(model => model.deviceType === 'laptop')
+        .filter(model => model.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    : models.filter(model => 
+        selectedBrand ? model.brandId === selectedBrand.id : true
+      ).filter(model =>
+        selectedDevice ? model.deviceType === selectedDevice.type : true
+      ).filter(model =>
+        model.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
   const availableServices = repairServices.filter(service => 
     selectedDevice ? 
@@ -333,9 +423,21 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
   };
 
   const prevStep = () => {
-    // Allow going back to previous step, but handle special cases
     if (currentStep > 1) {
       const newStep = currentStep - 1;
+      
+      // Special handling for laptop flow
+      if (deviceType === 'laptop' && newStep === 2) {
+        // For laptops, skip step 2 and go back to home or step 1
+        if (onBackToHome) {
+          onBackToHome();
+          return;
+        } else {
+          setCurrentStep(1);
+          setSelectedDevice(null);
+          return;
+        }
+      }
       
       // If going back to step 1 but deviceType was provided, go to home instead
       if (newStep === 1 && deviceType && onBackToHome) {
@@ -373,38 +475,61 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
     );
   };
 
+  const handleModelSelection = (model: Model) => {
+    setSelectedModel(model);
+    
+    // For laptops, automatically set the brand based on the selected model
+    if (selectedDevice?.type === 'laptop') {
+      const modelBrand = brands.find(brand => brand.id === model.brandId);
+      if (modelBrand) {
+        setSelectedBrand(modelBrand);
+      }
+    }
+    
+    nextStep();
+  };
+
   const renderStepIndicator = () => (
     <div className="flex justify-center mb-4 md:mb-8 overflow-x-auto py-2">
       <div className="flex items-center space-x-2 md:space-x-4 px-2">
-        {[1, 2, 3, 4, 5].map((step) => (
-          <React.Fragment key={step}>
-            <div className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full border-2 text-xs sm:text-sm ${
-              step <= currentStep 
-                ? 'bg-yellow-400 border-yellow-400 text-gray-900' 
-                : 'border-gray-300 text-gray-400'
-            }`}>
-              {step < currentStep ? <Check className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" /> : step}
-            </div>
-            {step < 5 && (
-              <div className={`w-4 sm:w-6 md:w-12 h-0.5 ${
-                step < currentStep ? 'bg-yellow-400' : 'bg-gray-300'
-              }`} />
-            )}
-          </React.Fragment>
-        ))}
+        {[1, 2, 3, 4, 5].map((step) => {
+          // For laptops, skip step 2 visually
+          if (deviceType === 'laptop' && step === 2) {
+            return null;
+          }
+          
+          return (
+            <React.Fragment key={step}>
+              <div className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full border-2 text-xs sm:text-sm ${
+                step <= currentStep 
+                  ? 'bg-yellow-400 border-yellow-400 text-gray-900' 
+                  : 'border-gray-300 text-gray-400'
+              }`}>
+                {step < currentStep ? <Check className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" /> : step}
+              </div>
+              {step < 5 && !(deviceType === 'laptop' && step === 1) && (
+                <div className={`w-4 sm:w-6 md:w-12 h-0.5 ${
+                  step < currentStep ? 'bg-yellow-400' : 'bg-gray-300'
+                }`} />
+              )}
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );
 
   const renderStepLabels = () => (
     <div className="flex justify-center mb-4 sm:mb-6 md:mb-8 overflow-x-auto">
-      <div className="grid grid-cols-5 gap-1 sm:gap-2 md:gap-8 text-center text-xs sm:text-sm px-2">
+      <div className={`grid ${deviceType === 'laptop' ? 'grid-cols-4' : 'grid-cols-5'} gap-1 sm:gap-2 md:gap-8 text-center text-xs sm:text-sm px-2`}>
         <div className={`min-w-[50px] sm:min-w-[60px] ${currentStep === 1 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
           Appareil
         </div>
-        <div className={`min-w-[50px] sm:min-w-[60px] ${currentStep === 2 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
-          Marque
-        </div>
+        {deviceType !== 'laptop' && (
+          <div className={`min-w-[50px] sm:min-w-[60px] ${currentStep === 2 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
+            Marque
+          </div>
+        )}
         <div className={`min-w-[50px] sm:min-w-[60px] ${currentStep === 3 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}`}>
           Modèle
         </div>
@@ -518,7 +643,8 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                     whileTap={{ scale: 0.98 }}
                     onClick={() => {
                       setSelectedDevice(device);
-                      nextStep();
+                      // For laptops, skip to step 3, for mobiles go to step 2
+                      setCurrentStep(device.type === 'laptop' ? 3 : 2);
                     }}
                     className="bg-gray-800 hover:bg-gray-700 border-2 border-gray-700 hover:border-yellow-400 rounded-xl p-4 sm:p-6 transition-all duration-300 group"
                   >
@@ -532,8 +658,8 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
             </motion.div>
           )}
 
-          {/* Step 2: Brand Selection */}
-          {currentStep === 2 && (
+          {/* Step 2: Brand Selection (only for mobiles) */}
+          {currentStep === 2 && selectedDevice?.type === 'mobile' && (
             <motion.div
               key="step2"
               initial={{ opacity: 0 }}
@@ -623,7 +749,10 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 transition={{ delay: 0.2 }}
                 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6 md:mb-8 px-4"
               >
-                Quel est votre modèle ?
+                {selectedDevice?.type === 'laptop' 
+                  ? 'Quel est votre modèle d\'ordinateur portable ?' 
+                  : 'Quel est votre modèle ?'
+                }
               </motion.h2>
               <motion.div 
                 initial={{ opacity: 0 }}
@@ -648,22 +777,27 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 animate="visible"
                 className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6"
               >
-                {filteredModels.map((model) => (
-                  <motion.button
-                    key={model.id}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => {
-                      setSelectedModel(model);
-                      nextStep();
-                    }}
-                    className="bg-gray-800 hover:bg-gray-700 border-2 border-gray-700 hover:border-yellow-400 rounded-lg p-2 sm:p-3 md:p-4 transition-all duration-300 group"
-                  >
-                    <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2 md:mb-3">{model.image}</div>
-                    <h3 className="text-xs sm:text-sm font-semibold text-white text-center line-clamp-2">{model.name}</h3>
-                  </motion.button>
-                ))}
+                {filteredModels.map((model) => {
+                  const modelBrand = brands.find(brand => brand.id === model.brandId);
+                  return (
+                    <motion.button
+                      key={model.id}
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleModelSelection(model)}
+                      className="bg-gray-800 hover:bg-gray-700 border-2 border-gray-700 hover:border-yellow-400 rounded-lg p-2 sm:p-3 md:p-4 transition-all duration-300 group"
+                    >
+                      <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2 md:mb-3">{model.image}</div>
+                      <h3 className="text-xs sm:text-sm font-semibold text-white text-center line-clamp-2 mb-1">
+                        {model.name}
+                      </h3>
+                      {selectedDevice?.type === 'laptop' && modelBrand && (
+                        <p className="text-xs text-gray-400 text-center">{modelBrand.name}</p>
+                      )}
+                    </motion.button>
+                  );
+                })}
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0 }}
@@ -741,7 +875,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                 className="bg-cyan-500 text-white p-2 sm:p-3 md:p-4 rounded-lg mb-4 sm:mb-6 md:mb-8 text-center"
               >
                 <h3 className="text-base sm:text-lg md:text-xl font-bold">
-                  Réparations {selectedBrand?.name} {selectedModel?.name}
+                  Réparations {selectedBrand?.name || ''} {selectedModel?.name}
                 </h3>
               </motion.div>
 
@@ -857,7 +991,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2 sm:mb-3 md:mb-4">Résumé</h3>
                   <div className="space-y-1 sm:space-y-2 text-gray-300 text-xs sm:text-sm md:text-base">
                     <p><strong>Appareil :</strong> {selectedDevice?.name}</p>
-                    <p><strong>Modèle :</strong> {selectedBrand?.name} {selectedModel?.name}</p>
+                    <p><strong>Modèle :</strong> {selectedBrand?.name || ''} {selectedModel?.name}</p>
                     <div>
                       <strong>Services :</strong>
                       <ul className="ml-3 sm:ml-4 mt-1 md:mt-2 space-y-1">
