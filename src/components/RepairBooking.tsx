@@ -31,11 +31,19 @@ interface RepairService {
   duration: string;
   warranty: string;
   eligible?: boolean;
+  deviceType: 'mobile' | 'laptop' | 'both';
 }
 
-const RepairBooking = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [selectedDevice, setSelectedDevice] = useState<Device | null>(null);
+interface RepairBookingProps {
+  deviceType?: 'mobile' | 'laptop';
+  onBackToHome?: () => void;
+}
+
+const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome }) => {
+  const [currentStep, setCurrentStep] = useState(deviceType ? 2 : 1);
+  const [selectedDevice, setSelectedDevice] = useState<Device | null>(
+    deviceType ? devices.find(d => d.type === deviceType) || null : null
+  );
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
@@ -104,9 +112,17 @@ const RepairBooking = () => {
   ];
 
   const models: Model[] = [
+    // Mobile models
     {
       id: 'iphone-15',
       name: 'iPhone 15 Pro',
+      image: '📱',
+      brandId: 'apple',
+      deviceType: 'mobile'
+    },
+    {
+      id: 'iphone-14',
+      name: 'iPhone 14',
       image: '📱',
       brandId: 'apple',
       deviceType: 'mobile'
@@ -126,8 +142,23 @@ const RepairBooking = () => {
       deviceType: 'mobile'
     },
     {
+      id: 'xiaomi-13',
+      name: 'Xiaomi 13 Pro',
+      image: '📱',
+      brandId: 'xiaomi',
+      deviceType: 'mobile'
+    },
+    // Laptop models
+    {
       id: 'macbook-pro',
       name: 'MacBook Pro 16"',
+      image: '💻',
+      brandId: 'apple',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'macbook-air',
+      name: 'MacBook Air 13"',
       image: '💻',
       brandId: 'apple',
       deviceType: 'laptop'
@@ -138,18 +169,34 @@ const RepairBooking = () => {
       image: '💻',
       brandId: 'dell',
       deviceType: 'laptop'
+    },
+    {
+      id: 'hp-pavilion',
+      name: 'HP Pavilion 15',
+      image: '💻',
+      brandId: 'hp',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'lenovo-thinkpad',
+      name: 'ThinkPad X1 Carbon',
+      image: '💻',
+      brandId: 'lenovo',
+      deviceType: 'laptop'
     }
   ];
 
   const repairServices: RepairService[] = [
+    // Mobile services
     {
-      id: 'screen',
+      id: 'mobile-screen',
       name: 'Compatible LCD screen',
       description: '1-hour workshop repair. 3-month warranty.',
       price: 299.00,
       duration: '1 hour',
       warranty: '3 months',
-      eligible: true
+      eligible: true,
+      deviceType: 'mobile'
     },
     {
       id: 'sim-drawer',
@@ -157,15 +204,17 @@ const RepairBooking = () => {
       description: 'Quick replacement service.',
       price: 10.00,
       duration: '15 minutes',
-      warranty: '1 month'
+      warranty: '1 month',
+      deviceType: 'mobile'
     },
     {
-      id: 'battery',
+      id: 'mobile-battery',
       name: 'Battery replacement',
       description: 'Original battery with 6-month warranty.',
       price: 89.00,
       duration: '30 minutes',
-      warranty: '6 months'
+      warranty: '6 months',
+      deviceType: 'mobile'
     },
     {
       id: 'charging-port',
@@ -173,15 +222,65 @@ const RepairBooking = () => {
       description: 'Complete charging port replacement.',
       price: 79.00,
       duration: '45 minutes',
-      warranty: '3 months'
+      warranty: '3 months',
+      deviceType: 'mobile'
     },
+    // Laptop services
+    {
+      id: 'laptop-screen',
+      name: 'LCD Screen Replacement',
+      description: 'Professional screen replacement with warranty.',
+      price: 450.00,
+      duration: '2-3 hours',
+      warranty: '6 months',
+      eligible: true,
+      deviceType: 'laptop'
+    },
+    {
+      id: 'laptop-battery',
+      name: 'Laptop Battery Replacement',
+      description: 'High-quality battery replacement.',
+      price: 120.00,
+      duration: '1 hour',
+      warranty: '12 months',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'keyboard-repair',
+      name: 'Keyboard Repair/Replacement',
+      description: 'Individual key or full keyboard replacement.',
+      price: 180.00,
+      duration: '1-2 hours',
+      warranty: '6 months',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'motherboard-repair',
+      name: 'Motherboard Repair',
+      description: 'Complex motherboard diagnostics and repair.',
+      price: 350.00,
+      duration: '3-5 days',
+      warranty: '3 months',
+      deviceType: 'laptop'
+    },
+    {
+      id: 'hard-drive-replacement',
+      name: 'Hard Drive/SSD Upgrade',
+      description: 'Storage upgrade with data migration.',
+      price: 200.00,
+      duration: '2-4 hours',
+      warranty: '12 months',
+      deviceType: 'laptop'
+    },
+    // Common services
     {
       id: 'data-recovery',
       name: 'Data recovery',
       description: 'Professional data recovery service.',
       price: 150.00,
       duration: '2-3 days',
-      warranty: 'N/A'
+      warranty: 'N/A',
+      deviceType: 'both'
     }
   ];
 
@@ -204,8 +303,14 @@ const RepairBooking = () => {
     model.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const availableServices = repairServices.filter(service => 
+    selectedDevice ? 
+      service.deviceType === selectedDevice.type || service.deviceType === 'both' 
+      : true
+  );
+
   const totalPrice = selectedServices.reduce((total, serviceId) => {
-    const service = repairServices.find(s => s.id === serviceId);
+    const service = availableServices.find(s => s.id === serviceId);
     return total + (service ? service.price : 0);
   }, 0);
 
@@ -261,10 +366,10 @@ const RepairBooking = () => {
           Model
         </div>
         <div className={currentStep === 4 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}>
-          Breakdown
+          Services
         </div>
         <div className={currentStep === 5 ? 'text-yellow-400 font-semibold' : 'text-gray-400'}>
-          Intervention
+          Appointment
         </div>
       </div>
     </div>
@@ -273,11 +378,38 @@ const RepairBooking = () => {
   return (
     <section className="py-12 bg-gray-900 min-h-screen">
       <div className="container mx-auto px-4 max-w-6xl">
+        {/* Back to Home Button */}
+        {onBackToHome && (
+          <div className="mb-6">
+            <button
+              onClick={onBackToHome}
+              className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
+            >
+              <ChevronLeft className="h-5 w-5" />
+              <span>Back to Home</span>
+            </button>
+          </div>
+        )}
+
+        {/* Device Type Header */}
+        {selectedDevice && (
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center space-x-3 bg-gray-800 px-6 py-3 rounded-lg">
+              <div className="text-yellow-400">
+                {selectedDevice.icon}
+              </div>
+              <h1 className="text-2xl font-bold text-white">
+                {selectedDevice.name} Repair Booking
+              </h1>
+            </div>
+          </div>
+        )}
+
         {renderStepIndicator()}
         {renderStepLabels()}
 
-        {/* Step 1: Device Selection */}
-        {currentStep === 1 && (
+        {/* Step 1: Device Selection (skip if deviceType is provided) */}
+        {currentStep === 1 && !deviceType && (
           <div className="text-center">
             <h2 className="text-3xl font-bold text-white mb-8">
               What type of device needs repair?
@@ -335,6 +467,17 @@ const RepairBooking = () => {
                 </button>
               ))}
             </div>
+            {deviceType && (
+              <div className="mt-8">
+                <button
+                  onClick={prevStep}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white mx-auto"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                  <span>Back</span>
+                </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -342,7 +485,7 @@ const RepairBooking = () => {
         {currentStep === 3 && (
           <div className="text-center">
             <h2 className="text-3xl font-bold text-white mb-8">
-              What is your role model?
+              What is your model?
             </h2>
             <div className="mb-8">
               <div className="relative max-w-md mx-auto">
@@ -370,6 +513,15 @@ const RepairBooking = () => {
                   <h3 className="text-sm font-semibold text-white text-center">{model.name}</h3>
                 </button>
               ))}
+            </div>
+            <div className="mt-8">
+              <button
+                onClick={prevStep}
+                className="flex items-center space-x-2 text-gray-400 hover:text-white mx-auto"
+              >
+                <ChevronLeft className="h-5 w-5" />
+                <span>Back</span>
+              </button>
             </div>
           </div>
         )}
@@ -412,7 +564,7 @@ const RepairBooking = () => {
             </div>
 
             <div className="space-y-4">
-              {repairServices.map((service) => (
+              {availableServices.map((service) => (
                 <div
                   key={service.id}
                   className="bg-gray-800 border border-gray-700 rounded-lg p-4 flex items-center justify-between hover:border-yellow-400 transition-colors"
@@ -486,12 +638,13 @@ const RepairBooking = () => {
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-bold text-white mb-4">Summary</h3>
                 <div className="space-y-2 text-gray-300">
+                  <p><strong>Device:</strong> {selectedDevice?.name}</p>
                   <p><strong>Model:</strong> {selectedBrand?.name} {selectedModel?.name}</p>
                   <div>
                     <strong>Services:</strong>
                     <ul className="ml-4 mt-2">
                       {selectedServices.map(serviceId => {
-                        const service = repairServices.find(s => s.id === serviceId);
+                        const service = availableServices.find(s => s.id === serviceId);
                         return service ? (
                           <li key={serviceId} className="flex justify-between">
                             <span>{service.name}</span>

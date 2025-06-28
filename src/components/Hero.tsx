@@ -1,12 +1,11 @@
 import React from 'react';
 import { Smartphone, Laptop, MapPin, Clock } from 'lucide-react';
 
-const Hero = () => {
-  const handleGetQuote = () => {
-    // This will be connected to the booking flow
-    window.location.hash = '#booking';
-  };
+interface HeroProps {
+  onNavigateToBooking: (deviceType: 'mobile' | 'laptop') => void;
+}
 
+const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
   return (
     <section id="home" className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex items-center py-8 relative overflow-hidden">
       {/* Animated Background Elements */}
@@ -71,7 +70,8 @@ const Hero = () => {
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {/* Mobile Repair Card */}
-          <div className="bg-white text-gray-900 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+          <div className="bg-white text-gray-900 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 backdrop-blur-sm cursor-pointer"
+               onClick={() => onNavigateToBooking('mobile')}>
             <div className="relative h-40 overflow-hidden">
               <img 
                 src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=800" 
@@ -102,17 +102,15 @@ const Hero = () => {
                 </div>
               </div>
 
-              <button 
-                onClick={handleGetQuote}
-                className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors text-sm"
-              >
-                Get Quote
+              <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                Book Mobile Repair
               </button>
             </div>
           </div>
 
           {/* Laptop Repair Card */}
-          <div className="bg-white text-gray-900 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+          <div className="bg-white text-gray-900 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 backdrop-blur-sm cursor-pointer"
+               onClick={() => onNavigateToBooking('laptop')}>
             <div className="relative h-40 overflow-hidden">
               <img 
                 src="https://images.pexels.com/photos/5582596/pexels-photo-5582596.jpeg?auto=compress&cs=tinysrgb&w=800" 
@@ -143,11 +141,8 @@ const Hero = () => {
                 </div>
               </div>
 
-              <button 
-                onClick={handleGetQuote}
-                className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors text-sm"
-              >
-                Get Quote
+              <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                Book Laptop Repair
               </button>
             </div>
           </div>

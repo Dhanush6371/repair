@@ -8,13 +8,31 @@ import Footer from './components/Footer';
 import RepairBooking from './components/RepairBooking';
 
 function App() {
-  const [showBooking, setShowBooking] = useState(false);
+  const [currentView, setCurrentView] = useState<'home' | 'mobile-booking' | 'laptop-booking'>('home');
 
-  if (showBooking) {
+  const handleNavigateToBooking = (deviceType: 'mobile' | 'laptop') => {
+    setCurrentView(deviceType === 'mobile' ? 'mobile-booking' : 'laptop-booking');
+  };
+
+  const handleBackToHome = () => {
+    setCurrentView('home');
+  };
+
+  if (currentView === 'mobile-booking') {
     return (
       <div className="min-h-screen">
-        <Header />
-        <RepairBooking />
+        <Header onBackToHome={handleBackToHome} />
+        <RepairBooking deviceType="mobile" onBackToHome={handleBackToHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentView === 'laptop-booking') {
+    return (
+      <div className="min-h-screen">
+        <Header onBackToHome={handleBackToHome} />
+        <RepairBooking deviceType="laptop" onBackToHome={handleBackToHome} />
         <Footer />
       </div>
     );
@@ -22,8 +40,8 @@ function App() {
 
   return (
     <div className="min-h-screen">
-      <Header />
-      <Hero />
+      <Header onBackToHome={handleBackToHome} />
+      <Hero onNavigateToBooking={handleNavigateToBooking} />
       <About />
       <Services />
       <Contact />
