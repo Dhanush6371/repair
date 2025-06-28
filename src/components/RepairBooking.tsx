@@ -40,6 +40,23 @@ interface RepairBookingProps {
 }
 
 const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome }) => {
+  // Declare devices array first
+  const devices: Device[] = [
+    {
+      id: 'mobile',
+      name: 'Mobile Phone',
+      icon: <Smartphone className="h-12 w-12" />,
+      type: 'mobile'
+    },
+    {
+      id: 'laptop',
+      name: 'Laptop',
+      icon: <Laptop className="h-12 w-12" />,
+      type: 'laptop'
+    }
+  ];
+
+  // Now we can safely use devices in state initialization
   const [currentStep, setCurrentStep] = useState(deviceType ? 2 : 1);
   const [selectedDevice, setSelectedDevice] = useState<Device | null>(
     deviceType ? devices.find(d => d.type === deviceType) || null : null
@@ -56,21 +73,6 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
     email: '',
     phone: ''
   });
-
-  const devices: Device[] = [
-    {
-      id: 'mobile',
-      name: 'Mobile Phone',
-      icon: <Smartphone className="h-12 w-12" />,
-      type: 'mobile'
-    },
-    {
-      id: 'laptop',
-      name: 'Laptop',
-      icon: <Laptop className="h-12 w-12" />,
-      type: 'laptop'
-    }
-  ];
 
   const brands: Brand[] = [
     {
