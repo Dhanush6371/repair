@@ -57,7 +57,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
     }
   ];
 
-  // State initialization
+  // State initialization - start at step 1 if no deviceType, step 2 if deviceType provided
   const [currentStep, setCurrentStep] = useState(deviceType ? 2 : 1);
   const [selectedDevice, setSelectedDevice] = useState<Device | null>(
     deviceType ? devices.find(d => d.type === deviceType) || null : null
@@ -333,7 +333,36 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
   };
 
   const prevStep = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
+    // Allow going back to previous step, but handle special cases
+    if (currentStep > 1) {
+      const newStep = currentStep - 1;
+      
+      // If going back to step 1 but deviceType was provided, go to home instead
+      if (newStep === 1 && deviceType && onBackToHome) {
+        onBackToHome();
+        return;
+      }
+      
+      // Clear relevant state when going back
+      if (newStep === 1) {
+        setSelectedDevice(null);
+        setSelectedBrand(null);
+        setSelectedModel(null);
+        setSelectedServices([]);
+      } else if (newStep === 2) {
+        setSelectedBrand(null);
+        setSelectedModel(null);
+        setSelectedServices([]);
+      } else if (newStep === 3) {
+        setSelectedModel(null);
+        setSelectedServices([]);
+      } else if (newStep === 4) {
+        setSelectedServices([]);
+      }
+      
+      setCurrentStep(newStep);
+      setSearchTerm(''); // Clear search term when going back
+    }
   };
 
   const toggleService = (serviceId: string) => {
@@ -561,22 +590,20 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                   </motion.button>
                 ))}
               </motion.div>
-              {deviceType && (
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                  className="mt-6 md:mt-8"
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="mt-6 md:mt-8"
+              >
+                <button
+                  onClick={prevStep}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white mx-auto transition-colors"
                 >
-                  <button
-                    onClick={prevStep}
-                    className="flex items-center space-x-2 text-gray-400 hover:text-white mx-auto"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                    <span>Back</span>
-                  </button>
-                </motion.div>
-              )}
+                  <ChevronLeft className="h-5 w-5" />
+                  <span>Back</span>
+                </button>
+              </motion.div>
             </motion.div>
           )}
 
@@ -646,7 +673,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
               >
                 <button
                   onClick={prevStep}
-                  className="flex items-center space-x-2 text-gray-400 hover:text-white mx-auto"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white mx-auto transition-colors"
                 >
                   <ChevronLeft className="h-5 w-5" />
                   <span>Back</span>
@@ -769,7 +796,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
               >
                 <button
                   onClick={prevStep}
-                  className="flex items-center space-x-2 text-gray-400 hover:text-white"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
                 >
                   <ChevronLeft className="h-5 w-5" />
                   <span>Back</span>
@@ -961,7 +988,7 @@ const RepairBooking: React.FC<RepairBookingProps> = ({ deviceType, onBackToHome 
                       <button
                         type="button"
                         onClick={prevStep}
-                        className="flex items-center space-x-2 text-gray-400 hover:text-white"
+                        className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
                       >
                         <ChevronLeft className="h-5 w-5" />
                         <span>Back</span>
