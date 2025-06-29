@@ -20,12 +20,12 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Sample products - in a real app, these would come from your API/database
+  // Sample products with real images from Pexels
   const mobileProducts: Product[] = [
     {
       id: 'iphone-15-pro',
       name: 'iPhone 15 Pro',
-      image: '📱',
+      image: 'https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '1 229€',
       originalPrice: '1 329€',
       discount: '-100€',
@@ -34,7 +34,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'samsung-s24',
       name: 'Samsung Galaxy S24 Ultra',
-      image: '📱',
+      image: 'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '1 199€',
       originalPrice: '1 299€',
       discount: '-100€',
@@ -43,7 +43,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'xiaomi-13',
       name: 'Xiaomi 13 Pro',
-      image: '📱',
+      image: 'https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '899€',
       originalPrice: '999€',
       discount: '-100€',
@@ -52,7 +52,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'iphone-14',
       name: 'iPhone 14',
-      image: '📱',
+      image: 'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '909€',
       originalPrice: '1 009€',
       discount: '-100€',
@@ -61,7 +61,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'samsung-a54',
       name: 'Samsung Galaxy A54',
-      image: '📱',
+      image: 'https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '449€',
       originalPrice: '499€',
       discount: '-50€',
@@ -73,7 +73,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'macbook-pro-16',
       name: 'MacBook Pro 16"',
-      image: '💻',
+      image: 'https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '2 699€',
       originalPrice: '2 899€',
       discount: '-200€',
@@ -82,7 +82,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'dell-xps-15',
       name: 'Dell XPS 15',
-      image: '💻',
+      image: 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400',
       price: '1 899€',
       originalPrice: '2 099€',
       discount: '-200€',
@@ -91,7 +91,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'hp-spectre',
       name: 'HP Spectre x360',
-      image: '💻',
+      image: 'https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '1 599€',
       originalPrice: '1 799€',
       discount: '-200€',
@@ -100,7 +100,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'lenovo-thinkpad',
       name: 'Lenovo ThinkPad X1',
-      image: '💻',
+      image: 'https://images.pexels.com/photos/812264/pexels-photo-812264.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '2 199€',
       originalPrice: '2 399€',
       discount: '-200€',
@@ -109,7 +109,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
     {
       id: 'macbook-air',
       name: 'MacBook Air 15"',
-      image: '💻',
+      image: 'https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&w=400',
       price: '1 699€',
       originalPrice: '1 899€',
       discount: '-200€',
@@ -193,12 +193,15 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ type, title }) => {
             >
               <div className="bg-gray-900 rounded-lg p-3 sm:p-4 border border-gray-700 hover:border-yellow-400 transition-all duration-300 hover:scale-105 group">
                 {/* Product Image */}
-                <div className="text-center mb-3 sm:mb-4">
-                  <div className="text-4xl sm:text-5xl md:text-6xl mb-2 group-hover:scale-110 transition-transform">
-                    {product.image}
-                  </div>
+                <div className="relative mb-3 sm:mb-4 overflow-hidden rounded-lg">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
                   {product.discount && (
-                    <span className="inline-block bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                    <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
                       {product.discount}
                     </span>
                   )}
