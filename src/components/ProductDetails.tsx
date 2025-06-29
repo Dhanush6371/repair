@@ -303,32 +303,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
                     </div>
                     
                     {/* Sample reviews */}
-                    <div className="space-y-4">
-                      {[
-                        { name: 'Marie L.', rating: 5, comment: 'Excellent produit, très satisfaite de mon achat ! La qualité est au rendez-vous et la livraison a été rapide.', date: '15 Jan 2024' },
-                        { name: 'Pierre M.', rating: 4, comment: 'Bon rapport qualité-prix, livraison rapide. Le produit correspond exactement à la description.', date: '12 Jan 2024' },
-                        { name: 'Sophie D.', rating: 5, comment: 'Parfait, correspond exactement à mes attentes. Je recommande vivement ce produit.', date: '10 Jan 2024' },
-                        { name: 'Thomas R.', rating: 4, comment: 'Très bon produit, design élégant et fonctionnalités intéressantes. Service client réactif.', date: '8 Jan 2024' }
-                      ].map((review, index) => (
-                        <div key={index} className="bg-gray-800 p-4 rounded-lg border border-gray-700">
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center space-x-3">
-                              <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-                                <span className="text-gray-900 font-semibold text-sm">
-                                  {review.name.charAt(0)}
-                                </span>
-                              </div>
-                              <div>
-                                <span className="text-white font-medium">{review.name}</span>
-                                <div className="flex items-center space-x-1 mt-1">
-                                  {renderStars(review.rating)}
-                                </div>
-                              </div>
-                            </div>
-                            <span className="text-gray-400 text-sm">{review.date}</span>
-                          </div>
-                          <p className="text-gray-300 text-sm leading-relaxed">{review.comment}</p>
-                        </div>
+                    
                       ))}
                     </div>
                   </div>
