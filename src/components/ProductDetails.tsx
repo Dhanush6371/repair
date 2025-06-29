@@ -134,24 +134,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
                 </div>
 
                 {/* Thumbnail Images - Only 4 images */}
-                <div className="grid grid-cols-4 gap-2">
-                  {productImages.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImageIndex(index)}
-                      className={`aspect-square rounded-lg overflow-hidden border-2 transition-colors ${
-                        selectedImageIndex === index ? 'border-yellow-400' : 'border-gray-600'
-                      }`}
-                    >
-                      <img
-                        src={image}
-                        alt={`${product.name} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
+                
 
               {/* Product Info */}
               <div className="space-y-6">
