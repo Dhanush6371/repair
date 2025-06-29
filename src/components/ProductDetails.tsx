@@ -302,9 +302,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
                       </div>
                     </div>
                     
-                    {/* Sample reviews */}
-                    
-                      ))}
+                    {/* Sample reviews placeholder */}
+                    <div className="text-gray-400 text-center py-8">
+                      <p>Les avis clients seront affichés ici</p>
                     </div>
                   </div>
                 )}
