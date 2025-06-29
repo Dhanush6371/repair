@@ -1,5 +1,6 @@
 import React from 'react';
 import { Smartphone, Laptop, MapPin, Clock } from 'lucide-react';
+import ProductCarousel from './ProductCarousel';
 
 interface HeroProps {
   onNavigateToBooking: (deviceType: 'mobile' | 'laptop') => void;
@@ -7,7 +8,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
   return (
-    <section id="home" className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex items-center py-8 relative overflow-hidden">
+    <section id="home" className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex flex-col justify-center py-8 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Bubbles */}
@@ -58,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 flex-1 flex flex-col justify-center">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
             Services de <span className="text-yellow-400">Réparation Tech</span> Experts
@@ -68,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto mb-8 md:mb-16">
           {/* Mobile Repair Card */}
           <div className="bg-white text-gray-900 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 backdrop-blur-sm cursor-pointer"
                onClick={() => onNavigateToBooking('mobile')}>
@@ -146,6 +147,21 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
               </button>
             </div>
           </div>
+        </div>
+
+        {/* Product Showcase Carousels */}
+        <div className="space-y-6 md:space-y-8 max-w-6xl mx-auto w-full">
+          {/* Mobile Products Carousel */}
+          <ProductCarousel 
+            type="mobile" 
+            title="📱 Mobiles en Vente - Offres Spéciales"
+          />
+          
+          {/* Laptop Products Carousel */}
+          <ProductCarousel 
+            type="laptop" 
+            title="💻 Ordinateurs Portables - Meilleures Offres"
+          />
         </div>
       </div>
     </section>
