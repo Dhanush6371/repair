@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Smartphone, Laptop, MapPin, Clock } from 'lucide-react';
 import ProductCarousel from './ProductCarousel';
+import ProductDetails from './ProductDetails';
+
+interface Product {
+  id: string;
+  name: string;
+  brand: string;
+  image: string;
+  price: string;
+  originalPrice?: string;
+  discount?: string;
+  rating: number;
+  reviews: number;
+  features: string[];
+  specifications: Record<string, string>;
+  description: string;
+  inStock: boolean;
+  category: string;
+}
 
 interface HeroProps {
   onNavigateToBooking: (deviceType: 'mobile' | 'laptop') => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isProductDetailsOpen, setIsProductDetailsOpen] = useState(false);
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    setIsProductDetailsOpen(true);
+  };
+
+  const handleCloseProductDetails = () => {
+    setIsProductDetailsOpen(false);
+    setSelectedProduct(null);
+  };
+
   return (
     <section id="home" className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex flex-col justify-center py-8 relative overflow-hidden">
       {/* Animated Background Elements */}
@@ -149,21 +180,32 @@ const Hero: React.FC<HeroProps> = ({ onNavigateToBooking }) => {
           </div>
         </div>
 
-        {/* Product Showcase Carousels */}
-        <div className="space-y-6 md:space-y-8 max-w-6xl mx-auto w-full">
+        {/* Enhanced Product Showcase Carousels */}
+        <div className="space-y-8 md:space-y-12 max-w-7xl mx-auto w-full">
           {/* Mobile Products Carousel */}
           <ProductCarousel 
             type="mobile" 
-            title="📱 Mobiles en Vente - Offres Spéciales"
+            title="📱 Mobiles Premium - Dernières Nouveautés"
+            onProductClick={handleProductClick}
           />
           
           {/* Laptop Products Carousel */}
           <ProductCarousel 
             type="laptop" 
-            title="💻 Ordinateurs Portables - Meilleures Offres"
+            title="💻 Ordinateurs Portables - Performance & Innovation"
+            onProductClick={handleProductClick}
           />
         </div>
       </div>
+
+      {/* Product Details Modal */}
+      {selectedProduct && (
+        <ProductDetails
+          product={selectedProduct}
+          onClose={handleCloseProductDetails}
+          isOpen={isProductDetailsOpen}
+        />
+      )}
     </section>
   );
 };
