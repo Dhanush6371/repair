@@ -134,7 +134,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
                 </div>
 
                 {/* Thumbnail Images - Only 4 images */}
-                
+              </div>
 
               {/* Product Info */}
               <div className="space-y-6">
