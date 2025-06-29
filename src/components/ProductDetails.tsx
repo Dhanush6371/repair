@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Star, Heart, ShoppingCart, Share2, Truck, Shield, RotateCcw, ChevronLeft, ChevronRight, Check, Plus, Minus } from 'lucide-react';
+import { X, Star, Heart, Share2, Truck, Shield, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Product {
@@ -27,16 +27,15 @@ interface ProductDetailsProps {
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpen }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
   const [activeTab, setActiveTab] = useState<'description' | 'specifications' | 'reviews'>('description');
 
-  // Generate multiple product images (in real app, these would come from the product data)
+  // Only 4 product images as requested
   const productImages = [
     product.image,
-    product.image, // In real app, these would be different angles
-    product.image,
-    product.image
+    'https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=600'
   ];
 
   const renderStars = (rating: number) => {
@@ -46,15 +45,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
         className={`h-4 w-4 ${i < Math.floor(rating) ? 'text-yellow-400 fill-current' : 'text-gray-400'}`} 
       />
     ));
-  };
-
-  const handleQuantityChange = (change: number) => {
-    setQuantity(prev => Math.max(1, prev + change));
-  };
-
-  const handleAddToCart = () => {
-    // Add to cart logic here
-    console.log(`Added ${quantity} x ${product.name} to cart`);
   };
 
   const handleShare = () => {
@@ -143,13 +133,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
                   </div>
                 </div>
 
-                {/* Thumbnail Images */}
-                <div className="flex space-x-2 overflow-x-auto">
+                {/* Thumbnail Images - Only 4 images */}
+                <div className="grid grid-cols-4 gap-2">
                   {productImages.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-colors ${
+                      className={`aspect-square rounded-lg overflow-hidden border-2 transition-colors ${
                         selectedImageIndex === index ? 'border-yellow-400' : 'border-gray-600'
                       }`}
                     >
@@ -203,48 +193,35 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
                   </div>
                 </div>
 
-                {/* Quantity and Actions */}
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-white text-sm">Quantité:</span>
-                      <div className="flex items-center border border-gray-600 rounded-lg">
-                        <button
-                          onClick={() => handleQuantityChange(-1)}
-                          className="p-2 hover:bg-gray-800 transition-colors"
-                        >
-                          <Minus className="h-4 w-4 text-gray-400" />
-                        </button>
-                        <span className="px-4 py-2 text-white">{quantity}</span>
-                        <button
-                          onClick={() => handleQuantityChange(1)}
-                          className="p-2 hover:bg-gray-800 transition-colors"
-                        >
-                          <Plus className="h-4 w-4 text-gray-400" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                {/* Action Buttons - Simplified without cart */}
+                <div className="flex space-x-3">
+                  <button
+                    onClick={() => setIsFavorite(!isFavorite)}
+                    className="flex-1 border border-gray-600 hover:border-yellow-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2"
+                  >
+                    <Heart className={`h-5 w-5 ${isFavorite ? 'text-red-400 fill-current' : 'text-gray-400'}`} />
+                    <span>{isFavorite ? 'Retiré des favoris' : 'Ajouter aux favoris'}</span>
+                  </button>
+                  <button
+                    onClick={handleShare}
+                    className="p-3 border border-gray-600 hover:border-gray-500 rounded-lg transition-colors"
+                  >
+                    <Share2 className="h-5 w-5 text-gray-400" />
+                  </button>
+                </div>
 
-                  <div className="flex space-x-3">
-                    <button
-                      onClick={handleAddToCart}
-                      className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2"
-                    >
-                      <ShoppingCart className="h-5 w-5" />
-                      <span>Ajouter au panier</span>
+                {/* Contact for Purchase */}
+                <div className="bg-gradient-to-r from-yellow-400/10 to-yellow-500/10 border border-yellow-400/30 rounded-lg p-4">
+                  <h4 className="text-yellow-400 font-semibold mb-2">Intéressé par ce produit ?</h4>
+                  <p className="text-gray-300 text-sm mb-3">
+                    Contactez-nous pour plus d'informations ou pour passer commande
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <button className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                      Nous contacter
                     </button>
-                    <button
-                      onClick={() => setIsFavorite(!isFavorite)}
-                      className="p-3 border border-gray-600 hover:border-gray-500 rounded-lg transition-colors"
-                    >
-                      <Heart className={`h-5 w-5 ${isFavorite ? 'text-red-400 fill-current' : 'text-gray-400'}`} />
-                    </button>
-                    <button
-                      onClick={handleShare}
-                      className="p-3 border border-gray-600 hover:border-gray-500 rounded-lg transition-colors"
-                    >
-                      <Share2 className="h-5 w-5 text-gray-400" />
+                    <button className="flex-1 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors text-sm">
+                      Demander un devis
                     </button>
                   </div>
                 </div>
@@ -291,24 +268,45 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
 
               <div className="p-4 sm:p-6">
                 {activeTab === 'description' && (
-                  <div className="text-gray-300 leading-relaxed">
+                  <div className="text-gray-300 leading-relaxed space-y-4">
                     <p>{product.description}</p>
+                    <div className="bg-gray-800 p-4 rounded-lg">
+                      <h4 className="text-white font-semibold mb-2">Points forts</h4>
+                      <ul className="space-y-1 text-sm">
+                        <li className="flex items-center space-x-2">
+                          <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
+                          <span>Design premium et finitions soignées</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
+                          <span>Performance exceptionnelle</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
+                          <span>Technologie de pointe</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
+                          <span>Excellent rapport qualité-prix</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 )}
 
                 {activeTab === 'specifications' && (
                   <div className="space-y-3">
                     {Object.entries(product.specifications).map(([key, value]) => (
-                      <div key={key} className="flex justify-between py-2 border-b border-gray-800">
-                        <span className="text-gray-400">{key}</span>
-                        <span className="text-white font-medium">{value}</span>
+                      <div key={key} className="flex justify-between py-3 border-b border-gray-800">
+                        <span className="text-gray-400 font-medium">{key}</span>
+                        <span className="text-white font-medium text-right">{value}</span>
                       </div>
                     ))}
                   </div>
                 )}
 
                 {activeTab === 'reviews' && (
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <div className="flex items-center justify-between">
                       <h4 className="text-white font-semibold">Avis clients</h4>
                       <div className="flex items-center space-x-2">
@@ -324,21 +322,29 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onClose, isOpe
                     {/* Sample reviews */}
                     <div className="space-y-4">
                       {[
-                        { name: 'Marie L.', rating: 5, comment: 'Excellent produit, très satisfaite de mon achat !', date: '15 Jan 2024' },
-                        { name: 'Pierre M.', rating: 4, comment: 'Bon rapport qualité-prix, livraison rapide.', date: '12 Jan 2024' },
-                        { name: 'Sophie D.', rating: 5, comment: 'Parfait, correspond exactement à mes attentes.', date: '10 Jan 2024' }
+                        { name: 'Marie L.', rating: 5, comment: 'Excellent produit, très satisfaite de mon achat ! La qualité est au rendez-vous et la livraison a été rapide.', date: '15 Jan 2024' },
+                        { name: 'Pierre M.', rating: 4, comment: 'Bon rapport qualité-prix, livraison rapide. Le produit correspond exactement à la description.', date: '12 Jan 2024' },
+                        { name: 'Sophie D.', rating: 5, comment: 'Parfait, correspond exactement à mes attentes. Je recommande vivement ce produit.', date: '10 Jan 2024' },
+                        { name: 'Thomas R.', rating: 4, comment: 'Très bon produit, design élégant et fonctionnalités intéressantes. Service client réactif.', date: '8 Jan 2024' }
                       ].map((review, index) => (
-                        <div key={index} className="bg-gray-800 p-4 rounded-lg">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center space-x-2">
-                              <span className="text-white font-medium">{review.name}</span>
-                              <div className="flex items-center space-x-1">
-                                {renderStars(review.rating)}
+                        <div key={index} className="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                                <span className="text-gray-900 font-semibold text-sm">
+                                  {review.name.charAt(0)}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-white font-medium">{review.name}</span>
+                                <div className="flex items-center space-x-1 mt-1">
+                                  {renderStars(review.rating)}
+                                </div>
                               </div>
                             </div>
                             <span className="text-gray-400 text-sm">{review.date}</span>
                           </div>
-                          <p className="text-gray-300 text-sm">{review.comment}</p>
+                          <p className="text-gray-300 text-sm leading-relaxed">{review.comment}</p>
                         </div>
                       ))}
                     </div>
